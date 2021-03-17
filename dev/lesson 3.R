@@ -5,7 +5,7 @@
 ###NAMESPACE
 ###the project file
 ###the R folder: with comments and the hello functions
-###the man folder: an example of documentation of the hello fc
+###the man folder: an example of documentation of the hello fc, is the manual folder!
 
 ## Create a new package with RStudio
 
@@ -128,15 +128,17 @@ usethis::use_readme_md( open = FALSE )
 ###is not needed to restart R, just load the modifications (faster):
 ###cambio fz nel pacchetto, poi faccio questo comando e posso usare la fz modificata
 ###modify fc of library and reload to use it!
+###create a new fc (r script) and save in R
 
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
 
 # Develop -----------------------------------------------------------------
-
+###not meant to be run sequentially!
+###we want now to create documentation
 
 ## Add a package
-usethis::use_package( "dplyr" )
+#usethis::use_package( "dplyr" )
 # remeber to add it to ROXYGEN or NAMESPACE:
 #' @import dplyr  # ROXYGEN
 #' import(dplyr)  # NAMESPACE
@@ -145,8 +147,26 @@ usethis::use_package( "dplyr" )
 # Menu: tools > Project options > build tools > generate the documentation with roxygen
 usethis::use_namespace(roxygen = TRUE)
 devtools::document() # to fill NAMESPACE and documentation with ROXYGEN comments
+###u still have nothing in the manual folder
+###insert the documentation over a function definition: CNTR SHIFT ALT R (go to the function and when u are on the name)
+###non funziona??
+###this is roxygen, is a package/an add-on of r that create documentation in r code files, the documentation is made by comments
+#' Title
+#'
+#' @param x
+#' @param y
+#'
+#' @return
+#' @export
+#'
+### #' the ' is a signal for roxygen that this line matters to it, so roxygen will read those lines and write documentation
+###title: name of the fc, explanation, x, y, risultato (u can write the type of variable other than cos e!)
+###now RELOAD the package and run devtools::document() to write the documentation->my_divion.Rd similar to a lateX file (text use to generate documentation)
 # or roxygen2::roxygenise() # converts roxygen comments to .Rd files.
 # or [Ctrl + Shift + D] in RStudio
+###---->if u write help(my_division) u can see the documentation!!!
+###the  @export is for the namespace! if u go to namespace u can see that is different now!
+###1.22.20
 
 ## Build or load
 # Load the package [CTRL + SHIFT + L] or install-and-reload [CTRL + SHIFT + B]
