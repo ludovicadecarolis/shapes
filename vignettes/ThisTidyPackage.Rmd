@@ -1,0 +1,25 @@
+---
+title: "ThisTidyPackage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ThisTidyPackage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(shapes)
+```
+
+#How to use my package
+
+```{r}
+average_mpg(my_dataset)
+```
