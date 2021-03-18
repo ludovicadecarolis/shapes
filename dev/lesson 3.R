@@ -114,14 +114,14 @@ usethis::use_readme_md( open = FALSE )
 ###in the R folder u have the R file of the library, u will store all ur fcs (dev>shapes>R)
 
 ###shortcuts:
-#   Build and Reload Package:  'Cmd + Shift + B'
+#   BUILD and Reload Package:  'Cmd + Shift + B'
 ###we have uploaded shapes
 ###now we call the function hello
 ###so we have the package installed working and we can create fcs in it
 ###se per esempio modifico la funzione hello poi rifaccio cmd shift b per ri-installare pacchetto per usarla nuova altrim ho la vecchia
 ###we won't source the code from here, we ll install the package or source them as a package
 
-# Source as package            'Cmd + Shift + L' ###it doesn t work!
+# Source as package            'Cmd + Shift + L' (LOAD) ###it doesn t work!
 ###u load the latest modifications if the package without installing them, is a temporary installation
 ###differenece betw INSTALLING and SOURCING: u re loading the package fcs without re-installing the package
 ###if I remove the package i cannot use library but if I do this command I can use the fcs of the package
@@ -136,12 +136,6 @@ usethis::use_readme_md( open = FALSE )
 # Develop -----------------------------------------------------------------
 ###not meant to be run sequentially!
 ###we want now to create documentation
-
-## Add a package
-#usethis::use_package( "dplyr" )
-# remeber to add it to ROXYGEN or NAMESPACE:
-#' @import dplyr  # ROXYGEN
-#' import(dplyr)  # NAMESPACE
 
 ## If you want to use roxygen, enable ROXYGEN in the project.
 # Menu: tools > Project options > build tools > generate the documentation with roxygen
@@ -171,8 +165,24 @@ devtools::document() # to fill NAMESPACE and documentation with ROXYGEN comments
 ###if u don t export u can use inside ur package but the final user can t (outside the package)
 ###CRAN repository from where we install packages
 ###if is a fc frequently use by the user u can t change it a lot of times (exported fc)
+###--->export fcs to handuser
 
-###write a new fc mtcars_manipulation (save in R), u have to put #' @export so in the NAMESPACE (after you rebuild the package) there is also the export of it
+###write a new fc mtcars_manipulation (save in R), u have to put #' @export so in the NAMESPACE (after you rebuild the package*) there is also the export of it
+###if u just cntr shift L* is available! but the final user u will not be able to use (you can because u are inside the package)
+###if I put %>% inside the fc: if we write library(dplyr) and call the fc it works BUT we want that the loadings of the dependencies happen beyond this hint!!if we have 10 packages as dependencies is a mess
+###go SETUP script to import dplyr package
+## Add a package
+usethis::use_package( "dplyr" )
+###the only thing changed was the DESCRIPTION file
+###reinstall the package and if I don t have installed dplyr it says the dependencies are not complete-->NOW shapes can t be used without dplyr installed
+# remeber to add it to ROXYGEN :
+#' @import dplyr  # ROXYGEN
+###in the file with the new fc
+###reinstall the package
+###u see the NAMESPACE has also import(dplyr)
+###if I use mutate I can t because I haven t loaded dplyr in my workspace!
+###with DESCRIPTION and NAMESPACE files u can track the dependencies and provide the dependence list to the colleagues
+###-->import fcs from other packages
 
 ## Build or load
 # Load the package [CTRL + SHIFT + L] or install-and-reload [CTRL + SHIFT + B]
